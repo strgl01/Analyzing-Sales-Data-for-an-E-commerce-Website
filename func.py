@@ -75,3 +75,12 @@ def remove_only_negative_stocks(group):
             group=group[~(group['StockCode'].isin(garbage_stock))]
             return(group)
 
+
+
+# fn to sort inside each group for stockcode
+def Sort_each_group_Stock(group,arg1):
+    return(group.sort_values(by='Quantity',ascending=arg1)[['Year','Quarter','Country','StockCode','Quantity']].head(5))
+
+# fn to sort inside each group for Customer
+def Sort_each_group_Cust(group,arg1):
+    return(group.sort_values(by='Total_Price',ascending=arg1)[['Year','Quarter','Country','CustomerID','Total_Price']].head(5))
