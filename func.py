@@ -84,3 +84,53 @@ def Sort_each_group_Stock(group,arg1):
 # fn to sort inside each group for Customer
 def Sort_each_group_Cust(group,arg1):
     return(group.sort_values(by='Total_Price',ascending=arg1)[['Year','Quarter','Country','CustomerID','Total_Price']].head(5))
+
+
+# fn to find stock pairs
+def coupled_stocks(Stock, df):
+    d={}
+    done=[]
+   
+    for j in Stock:
+        if j in done:
+            print(done)
+            continue
+
+        else:
+           
+           print(j)
+           Invoice = df[df['StockCode']==j]['InvoiceNo'].unique().tolist()
+           row_newdf=[]
+           unq_stock_in_df=np.array([])
+           d[j]=[]
+           for i in Invoice:
+            
+            temp=df[df['InvoiceNo']==i]
+            row_newdf.append(temp['StockCode'].tolist())
+            unq_stock_in_df=np.union1d(unq_stock_in_df,np.array(temp['StockCode'].tolist()))
+        
+           new_df=pd.DataFrame(row_newdf)
+           total_space=new_df.shape[0]
+           for stck in unq_stock_in_df:
+                if stck==j:
+                    continue
+                else:
+                    count=new_df.eq(stck).sum().sum()
+                    prob=(count/total_space)*100
+                
+                    if prob>50:
+                        d[j].append(stck)
+                        done.append(stck)
+       
+
+    print(d)
+    return(d)
+        
+                
+
+    
+
+        
+
+
+

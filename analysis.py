@@ -1,6 +1,9 @@
 import pandas as pd
+import time
 import func
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 df=pd.read_csv('clean_data.csv')
 # convert invoicedate to datetime
@@ -10,6 +13,7 @@ df['Quarter']=df['InvoiceDate'].dt.quarter
 df['Month']=df['InvoiceDate'].dt.month_name()
 df['Day']=df['InvoiceDate'].dt.day_name()
 df['Year']=df['InvoiceDate'].dt.year
+df['Date']=df['InvoiceDate'].dt.date
 
 '''Top 5 stock from each country per quarter'''
 
@@ -38,6 +42,20 @@ Last_5_Cust_from_each_country_per_year_per_quarter=Last_5_Cust_from_each_country
 # droping the index got from groups through fn return
 Top_5_Cust_from_each_country_per_year_per_quarter=Top_5_Cust_from_each_country_per_year_per_quarter.reset_index(drop=True).sort_values(['Year','Quarter','Country'])
 
-print(top_5_stock_from_each_country_per_year_per_quarter.head(6))
-print(Last_5_Cust_from_each_country_per_year_per_quarter.head(6))
-print(Top_5_Cust_from_each_country_per_year_per_quarter.head(6))
+# print(top_5_stock_from_each_country_per_year_per_quarter.head(6))
+# print(Last_5_Cust_from_each_country_per_year_per_quarter.head(6))
+# print(Top_5_Cust_from_each_country_per_year_per_quarter.head(6)) 
+
+Stock=df['StockCode'].unique()
+# print(Stock)
+# print(df[df['StockCode']=='23166'])
+
+
+# with open('stock.txt','w') as f:
+#     f.write(func.coupled_stocks(Stock,df[~df['InvoiceNo'].str.startswith('C')][['InvoiceNo','StockCode']]))
+a=df.groupby('Date')['Total_Price'].sum().reset_index()
+print(a.shape)
+# a.plot.scatter(x='Date',y='Total_Price')
+# plt.show()
+# sns.kdeplot(df['Total_Price'][:500])
+# plt.show()
