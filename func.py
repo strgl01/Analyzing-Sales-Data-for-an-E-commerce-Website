@@ -93,12 +93,9 @@ def coupled_stocks(Stock, df):
    
     for j in Stock:
         if j in done:
-            print(done)
             continue
 
         else:
-           
-           print(j)
            Invoice = df[df['StockCode']==j]['InvoiceNo'].unique().tolist()
            row_newdf=[]
            unq_stock_in_df=np.array([])
@@ -118,19 +115,19 @@ def coupled_stocks(Stock, df):
                     count=new_df.eq(stck).sum().sum()
                     prob=(count/total_space)*100
                 
-                    if prob>50:
+                    if prob>70:
                         d[j].append(stck)
                         done.append(stck)
-       
 
-    print(d)
     return(d)
         
                 
 
     
+# fns to send data from analysis.py to mains.py
 
-        
+def stock5(df):
+    return
 
 
 

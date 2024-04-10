@@ -4,6 +4,7 @@ import func
 
 # reading the csv file using encoding parameter to read without error
 data=pd.read_csv('data.csv',encoding='ISO-8859-1')
+print(data.shape)
 
 # convert invoicedate to datetime
 data=func.conv_to_datetime(data,'InvoiceDate')

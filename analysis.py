@@ -8,6 +8,7 @@ import seaborn as sns
 df=pd.read_csv('clean_data.csv')
 # convert invoicedate to datetime
 df=func.conv_to_datetime(df,'InvoiceDate')
+#print(df.shape)
 # creating few columns to do some timly analysis
 df['Quarter']=df['InvoiceDate'].dt.quarter
 df['Month']=df['InvoiceDate'].dt.month_name()
@@ -54,7 +55,7 @@ Stock=df['StockCode'].unique()
 # with open('stock.txt','w') as f:
 #     f.write(func.coupled_stocks(Stock,df[~df['InvoiceNo'].str.startswith('C')][['InvoiceNo','StockCode']]))
 a=df.groupby('Date')['Total_Price'].sum().reset_index()
-print(a.shape)
+#print(a.shape)
 # a.plot.scatter(x='Date',y='Total_Price')
 # plt.show()
 # sns.kdeplot(df['Total_Price'][:500])
