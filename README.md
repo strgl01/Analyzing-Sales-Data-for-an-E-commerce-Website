@@ -9,5 +9,5 @@
     6. After doing all the cleaning now we had 9 features and 405595 records.<br>
     7. We created some features to help our analysis from existing columns like Quarter, Date, Total Price, etc<br>
     8. On the cleaned data we have performed both descripive and inferential statistics.<br>
-    9. Please try running main.py or url- <br>
+    9. Please try running main.py or url- https://analyzing-sales-data-for-an-e-commerce-website-6lfb3b6gdg2bzhq.streamlit.app/ <br>
     
