@@ -1,6 +1,6 @@
 <h1> Analyzing Sales Data for an E-commerce Website </h1>
 
-Project Summary<br>
+<h2>Project Summary</h2>
     1. Data had 8 features and 541909 records<br>
     2. On analysing data we found for some records Unit Price column had 0 value and for same record Quantity column also had -ve value<br>
     3. On further analysis found the Description and Stock column were NAN, So we removed these records<br>
