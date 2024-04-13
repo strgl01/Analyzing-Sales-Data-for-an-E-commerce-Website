@@ -26,7 +26,10 @@ temp=stock_quaterly.groupby(['Year','Quarter','Country'])
 top_5_stock_from_each_country_per_year_per_quarter=temp.apply(func.Sort_each_group_Stock,arg1=False)
 # droping the index got from groups through fn return
 top_5_stock_from_each_country_per_year_per_quarter=top_5_stock_from_each_country_per_year_per_quarter.reset_index(drop=True).sort_values(['Year','Quarter','Country'])
-
+# calling fn to perform sorting on stock and giving last 5 stock from each country
+last_5_stock_from_each_country_per_year_per_quarter=temp.apply(func.Sort_each_group_Stock,arg1=True)
+# droping the index got from groups through fn return
+last_5_stock_from_each_country_per_year_per_quarter=last_5_stock_from_each_country_per_year_per_quarter.reset_index(drop=True).sort_values(['Year','Quarter','Country'])
 
 '''Last 5 Coustmer from each country per quarter'''
 
