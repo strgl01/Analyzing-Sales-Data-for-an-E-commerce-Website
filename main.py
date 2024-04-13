@@ -60,6 +60,10 @@ temp=stock_quaterly.groupby(['Year','Quarter','Country'])
 top_5_stock_from_each_country_per_year_per_quarter=temp.apply(func.Sort_each_group_Stock,arg1=False)
 # droping the index got from groups through fn return
 top_5_stock_from_each_country_per_year_per_quarter=top_5_stock_from_each_country_per_year_per_quarter.reset_index(drop=True).sort_values(['Year','Quarter','Country'])
+# calling fn to perform sorting on stock and giving last 5 stock from each country
+last_5_stock_from_each_country_per_year_per_quarter=temp.apply(func.Sort_each_group_Stock,arg1=True)
+# droping the index got from groups through fn return
+last_5_stock_from_each_country_per_year_per_quarter=last_5_stock_from_each_country_per_year_per_quarter.reset_index(drop=True).sort_values(['Year','Quarter','Country'])
 
 
 #Last 5 Coustmer from each country per quarter
@@ -144,12 +148,14 @@ if selection=='Summary Of Data':
 elif selection=='Top stock/Customer':
 
 
-    option1=st.selectbox('Select Country',df['Year'].sort_values().unique().tolist())
-    option2=st.selectbox('Select Country',df['Quarter'].sort_values().unique().tolist())
+    option1=st.selectbox('Select Year',df['Year'].sort_values().unique().tolist())
+    option2=st.selectbox('Select Quarter',df['Quarter'].sort_values().unique().tolist())
     option3=st.selectbox('Select Country',df['Country'].sort_values().unique().tolist())
 
     st.subheader('Top Stock')
     st.dataframe(top_5_stock_from_each_country_per_year_per_quarter[(top_5_stock_from_each_country_per_year_per_quarter['Year']==option1) & (top_5_stock_from_each_country_per_year_per_quarter['Quarter']==option2) & (top_5_stock_from_each_country_per_year_per_quarter['Country']==option3)])
+    st.subheader('Medicore Stock')
+    st.dataframe(last_5_stock_from_each_country_per_year_per_quarter[(last_5_stock_from_each_country_per_year_per_quarter['Year']==option1) & (last_5_stock_from_each_country_per_year_per_quarter['Quarter']==option2) & (last_5_stock_from_each_country_per_year_per_quarter['Country']==option3)])
 
     st.subheader('Top Customer')
     st.dataframe(Top_5_Cust_from_each_country_per_year_per_quarter[(Top_5_Cust_from_each_country_per_year_per_quarter['Year']==option1) & (Top_5_Cust_from_each_country_per_year_per_quarter['Quarter']==option2) & (Top_5_Cust_from_each_country_per_year_per_quarter['Country']==option3)])
